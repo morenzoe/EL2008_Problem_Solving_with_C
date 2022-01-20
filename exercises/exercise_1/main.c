@@ -25,7 +25,9 @@ int min(int x, int y){
 
 int main()
 {
-    printf("")
+    printf("Water Jug Problem\n");
+    printf("Ember A memiliki volume 3L, ember B memiliki volume 5L.\n");
+    printf("Pilih instruksi yang ada sampai ember B terisi sebanyak 4L.\n\n");
 
     int volumes[2] = {0,0}; // [volumeA, volumeB]
     int instruction = 0;
@@ -73,7 +75,7 @@ int main()
 
     printf("Volume A: %d | Volume B: %d\n\n", volumes[0], volumes[1]);
 
-    printf("Selesai!")
+    printf("Selesai!");
 
     return 0;
 }
