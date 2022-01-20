@@ -42,6 +42,7 @@ int main()
     printf("Pilihan angka instruksi: ");
     scanf("%d", &instruction);
 
+    /*
     if (instruction == 1){
         fillA(volumes);
     }
@@ -62,10 +63,36 @@ int main()
     } else {
         printf("Instruksi tidak ada.");
     }
+    */
+
+    switch(instruction){
+    case 1:
+        fillA(volumes);
+        break;
+    case 2:
+        fillB(volumes);
+        break;
+    case 3:
+        AtoB(volumes);
+        break;
+    case 4:
+        BtoA(volumes);
+        break;
+    case 5:
+        emptyA(volumes);
+        break;
+    case 6:
+        emptyB(volumes);
+        break;
+    default:
+        printf("Instruksi tidak ada.\n");
+        break;
+    }
+
     printf("\n");
 
 
-    printf("Volume A: %d | Volume B: %d\n\n", volumes[0], volumes[1]);
+    printf("Volume A: %d | Volume B: %d\n", volumes[0], volumes[1]);
 
 
     return 0;
