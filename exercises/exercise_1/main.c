@@ -25,75 +25,55 @@ int min(int x, int y){
 
 int main()
 {
-    //print welcome
+    printf("")
+
     int volumes[2] = {0,0}; // [volumeA, volumeB]
     int instruction = 0;
 
-    //while
+    while(volumes[1]!=4){
+
+        printf("Volume A: %d | Volume B: %d\n\n", volumes[0], volumes[1]);
+
+        printf("Pilihan Instruksi:\n");
+        printf("1. Isi ember A sampai penuh\n");
+        printf("2. Isi ember B sampai penuh\n");
+        printf("3. Tuang ember A ke ember B sampai ember B penuh\n");
+        printf("4. Tuang ember B ke ember A sampai ember A penuh\n");
+        printf("5. Kosongkan ember A\n");
+        printf("6. Kosongkan ember B\n");
+        printf("Pilihan angka instruksi: ");
+        scanf("%d", &instruction);
+
+        switch(instruction){
+        case 1:
+            fillA(volumes);
+            break;
+        case 2:
+            fillB(volumes);
+            break;
+        case 3:
+            AtoB(volumes);
+            break;
+        case 4:
+            BtoA(volumes);
+            break;
+        case 5:
+            emptyA(volumes);
+            break;
+        case 6:
+            emptyB(volumes);
+            break;
+        default:
+            printf("Instruksi tidak ada.\n");
+            break;
+        }
+
+        printf("\n");
+    }
+
     printf("Volume A: %d | Volume B: %d\n\n", volumes[0], volumes[1]);
 
-    printf("Pilihan Instruksi:\n");
-    printf("1. Isi ember A sampai penuh\n");
-    printf("2. Isi ember B sampai penuh\n");
-    printf("3. Tuang ember A ke ember B sampai ember B penuh\n");
-    printf("4. Tuang ember B ke ember A sampai ember A penuh\n");
-    printf("5. Kosongkan ember A\n");
-    printf("6. Kosongkan ember B\n");
-    printf("Pilihan angka instruksi: ");
-    scanf("%d", &instruction);
-
-    /*
-    if (instruction == 1){
-        fillA(volumes);
-    }
-    else if (instruction == 2){
-        fillB(volumes);
-    }
-    else if (instruction == 3){
-        AtoB(volumes);
-    }
-    else if (instruction == 4){
-        BtoA(volumes);
-    }
-    else if (instruction == 5){
-        emptyA(volumes);
-    }
-    else if (instruction == 6){
-        emptyB(volumes);
-    } else {
-        printf("Instruksi tidak ada.");
-    }
-    */
-
-    switch(instruction){
-    case 1:
-        fillA(volumes);
-        break;
-    case 2:
-        fillB(volumes);
-        break;
-    case 3:
-        AtoB(volumes);
-        break;
-    case 4:
-        BtoA(volumes);
-        break;
-    case 5:
-        emptyA(volumes);
-        break;
-    case 6:
-        emptyB(volumes);
-        break;
-    default:
-        printf("Instruksi tidak ada.\n");
-        break;
-    }
-
-    printf("\n");
-
-
-    printf("Volume A: %d | Volume B: %d\n", volumes[0], volumes[1]);
-
+    printf("Selesai!")
 
     return 0;
 }
