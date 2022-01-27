@@ -23,6 +23,18 @@ int min(int x, int y){
     }
 }
 
+int askInput(){
+    int userInput;
+    int check = scanf("%d", &userInput);
+
+    if (check!=1){
+        return 0;
+    } else {
+        return userInput;
+    }
+
+}
+
 int main()
 {
     printf("Water Jug Problem\n");
@@ -44,33 +56,38 @@ int main()
         printf("5. Kosongkan ember A\n");
         printf("6. Kosongkan ember B\n");
         printf("Pilihan angka instruksi: ");
-        scanf("%d", &instruction);
 
-        switch(instruction){
-        case 1:
-            fillA(volumes);
-            break;
-        case 2:
-            fillB(volumes);
-            break;
-        case 3:
-            AtoB(volumes);
-            break;
-        case 4:
-            BtoA(volumes);
-            break;
-        case 5:
-            emptyA(volumes);
-            break;
-        case 6:
-            emptyB(volumes);
-            break;
-        default:
-            printf("Instruksi tidak ada.\n");
-            break;
+        instruction = askInput();
+        printf("%d",instruction);
+
+        if (instruction >=1 && instruction <=6){
+                switch(instruction){
+                case 1:
+                    fillA(volumes);
+                    break;
+                case 2:
+                    fillB(volumes);
+                    break;
+                case 3:
+                    AtoB(volumes);
+                    break;
+                case 4:
+                    BtoA(volumes);
+                    break;
+                case 5:
+                    emptyA(volumes);
+                    break;
+                case 6:
+                    emptyB(volumes);
+                    break;
+                default:
+                    printf("Instruksi tidak ada.\n");
+                    break;
+                }
         }
 
         printf("\n");
+
     }
 
     printf("Volume A: %d | Volume B: %d\n\n", volumes[0], volumes[1]);
