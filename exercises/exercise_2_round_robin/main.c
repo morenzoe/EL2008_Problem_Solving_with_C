@@ -76,19 +76,21 @@ int main()
     print_array(arrival);
 
     int total_time = arrival[0];
-    int machine_time;
+    int machine_time = quantum_time;
     int queue[5] = {0,6,6,6,6};
     int waiting = 1;
-    int user = 1;
+    int user = 0;
     while (!compare_array(arrival,execution)){
         printf("%d | ", total_time);
         print_waiting(queue);
         printf("\n");
 
-        if (execution[user]<quantum_time){
+        if (execution[user]-processed[user]<machine_time){
             processed[user]=execution[user];
+            user++
 
-        } else {
+        } else if (user<4 && arrival[user+1]-total_time<machine_time){
+            total_time=arrival[user+1]
 
         }
 
