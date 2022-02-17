@@ -1,4 +1,6 @@
 \documentclass[conference]{IEEEtran}
+\usepackage{cite}
+\usepackage{graphicx}
 
 \title{Implementasi Algoritma Dijkstra}
 
@@ -10,12 +12,80 @@ Bandung, Indonesia\\
 Emaill: 18320003@std.stei.itb.ac.id}
 }
 
+\graphicspath{{.report/graphics/}}
+
 \begin{document}
 
 \maketitle
 
-isi~\cite{noto2000method}\\
+\begin{abstract}
+    Kebun Raya Purwodadi dengan luas area sekitar 85
+hektar ternyata kekurangan papan informasi yang menyebabkan
+pengunjung kerap kali kebingungan dalam mencari lokasi tanaman
+tertentu. Paper ini bertujuan untuk membuat simulasi
+dari algoritma yang dapat menentukan jarak terdekat antara
+pengunjung (pengguna program) dengan lokasi tanaman yang
+dituju. Algoritma yang digunakan adalah algoritma Dijkstra
+yang beroperasi secara menyeluruh (greedy) untuk menguji
+seitap persimpangan (Vertex) dan jalan (Edge) pada Kebun
+Raya Purwodadi. Berdasarkan hasil simulasi dan pengujian,
+kompleksitas ruang dari program ini adalah O(V) karena adanya
+pembentukan array yang berisi V nodes untuk mencari heap minimum.
+Sementara, kompleksitas waktu dari algoritma tersebut
+adalah O(V2).
+\end{abstract}
 
+\begin{IEEEkeywords}
+    component, formatting, style, styling, insert
+\end{IEEEkeywords}
+
+\section{Introduction}
+Studi mengenai penggunaan algoritma Dijkstra dalam mencari
+jarak terdekat dapat diimplementasikan pada kasus pencarian
+tanaman pada Kebun Raya Purwodadi seperti yang telah
+dilakukan oleh Yusuf et al di tahun 2017 [1]. Paper ini bertujuan
+untuk melakukan simulasi kembali terhadap penelitian
+yang telah dilakukan dengan bahasa C serta mengevaluasi
+efisiensinya melalui perhitungan kompleksitas waktu dan ruang
+dengan analisis Big-O.
+
+\section{Arsitektur Sistem}
+Di Kecamatan Purwodadi, Kabupaten Pasuruan, terdapat
+salah satu kebun raya di Indonesia yang bernama Kebun
+Raya Purwodadi yang memiliki luas area hingga 85 hektar.
+Kebun raya sebagai fasilitas rekreasi dan penelitian ini ternyata
+kekurangan papan informasi yang seharusnya disediakan oleh
+pihak pengelola. Hal ini menyebabkan banyaknya pengunjung
+yang merasa kebingungan untuk mencari lokasi dari tanaman
+tertentu. Oleh karena itu, Yusuf et al (2017) memutuskan
+untuk membuat suatu aplikasi dengan memanfaatkan algoritma
+Dijkstra untuk membantu pengunjung Kebun Raya Purwodadi
+dalam mencari lokasi tertentu.
+
+%\begin{figure}[htbp]
+%    \centering
+%    \scalebox{0,6}{\input{graphics/Data Flow.pdf_tex}}
+%    \caption{Arsitektur Sistem}
+%\end{figure}
+
+\section{Implementasi}
+Di Kecamatan Purwodadi, Kabupaten Pasuruan, terdapat
+salah satu kebun raya di Indonesia yang bernama Kebun
+Raya Purwodadi yang memiliki luas area hingga 85 hektar.
+Kebun raya sebagai fasilitas rekreasi dan penelitian ini ternyata
+kekurangan papan informasi yang seharusnya disediakan oleh
+pihak pengelola. Hal ini menyebabkan banyaknya pengunjung
+yang merasa kebingungan untuk mencari lokasi dari tanaman
+tertentu. Oleh karena itu, Yusuf et al (2017) memutuskan
+untuk membuat suatu aplikasi dengan memanfaatkan algoritma
+Dijkstra untuk membantu pengunjung Kebun Raya Purwodadi
+dalam mencari lokasi tertentu.
+
+\subsection{Implementasi Graph pada Array dalam Bahasa C}
+The IEEEtran class file is used to format your paper and style the t
+
+\section{Kesimpulan}
+This document is a model and instructions
 
 \bibliographystyle{IEEEtran}
 \bibliography{references.bib}
