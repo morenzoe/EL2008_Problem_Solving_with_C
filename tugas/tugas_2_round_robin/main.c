@@ -46,12 +46,13 @@ void print_waiting(int arr[5]){
 int main()
 {
     printf("Selamat datang di program Round Robin!\n");
-    printf("Program ini akan mencetak urutan antrian dari lima proses.\n");
-    printf("Kelima proses diurutkan dari waktu kedatangan terkecil.\n\n");
+    printf("Program ini akan mencetak urutan antrian dari 6 proses.\n");
+    printf("Keenam proses diurutkan dari waktu kedatangan terkecil.\n\n");
 
-    int arrival[5] = {0,0,0,0,0};
-    int execution[5] = {0,0,0,0,0};
-    int processed[5] = {0,0,0,0,0};
+    int arrival[6] = {0,0,0,0,0};
+    int execution[6] = {0,0,0,0,0};
+    int processed[6] = {0,0,0,0,0};
+    int queue[6] = {-1,-1,-1,-1,-1,-1};
 
     printf("Masukan waktu kedatangan tiap proses!\n");
     int i;
@@ -61,14 +62,14 @@ int main()
     }
     printf("\n");
 
-    printf("Masukan waktu eksekusi tiap proses!\n");
+    printf("Masukan durasi eksekusi tiap proses!\n");
     for(i=0;i<5;i++){
         printf("Waktu eksekusi proses P%d adalah: ", i);
         scanf("%d",&execution[i]);
     }
     printf("\n");
 
-    int quantum_time = 0;
+    int quantum_time;
     printf("Waktu kuantum mesin adalah: ");
     scanf("%d",&quantum_time);
     printf("\n");
@@ -76,24 +77,22 @@ int main()
     print_array(arrival);
 
     int total_time = arrival[0];
+    printf("Waktu: %d", total_time);
+    for (i=0;i<5;i++){
+            printf("TP%d: %d", i, processed[i]);
+    }
+
+
+/*
     int machine_time = quantum_time;
-    int queue[5] = {0,6,6,6,6};
+    queue[0] = 0;
     int waiting = 1;
     int user = 0;
-    while (!compare_array(arrival,execution)){
-        printf("%d | ", total_time);
-        print_waiting(queue);
-        printf("\n");
+    int process_done = 0;
 
-        if (execution[user]-processed[user]<machine_time){
-            processed[user]=execution[user];
-            user++
+    while (!(process_done==6)) {
 
-        } else if (user<4 && arrival[user+1]-total_time<machine_time){
-            total_time=arrival[user+1]
-
-        }
 
 }
-
+*/
 
