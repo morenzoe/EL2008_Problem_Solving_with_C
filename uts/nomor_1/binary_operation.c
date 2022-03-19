@@ -63,7 +63,7 @@ int main()
 	char nimPart[5+1] = "";
 	int i;
 	int AFull[17];
-	int APart[8];
+	int A;
 	
 	//signed x, y;
 	
@@ -95,14 +95,11 @@ int main()
 	printf("\n");
 	
 	for(i=0; i<8; ++i){
-		APart[i] = AFull[i+9];
+		A += AFull[i+9] * pow(10, 7-i);
 	}
 	
 	// debugging
-	for(i=0; i<8;++i){
-		printf("%d", APart[i]);
-	}
-	printf("\n");
+	printf("%d", A);
 	
 	/*
 	AFull = itoa(A);
