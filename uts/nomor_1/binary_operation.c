@@ -12,15 +12,14 @@
 #include <string.h>
 #include <math.h>
 
-void decToBin(int dec, int* bin){
+void decToBin(int dec, int* bin, int len){
 	// dengan menggunakan division method
-	int remain, i = 1, j = 16;
+	int remain, i = 1, j = len-1;
 
 	while (dec != 0) {
 		remain = dec % 2;
 		dec /= 2;
 		bin[j] = remain;
-		printf("%d\n", remain);
 		 j -= 1;
 	}
 	
@@ -64,6 +63,8 @@ int main()
 	int i;
 	int AFull[17];
 	int A;
+	int hasil[8];
+	int y[8];
 	
 	//signed x, y;
 	
@@ -79,41 +80,43 @@ int main()
 	strncat(nimPart, &nim[7], 1);
 	
 	// debugging
-	printf("nimPart: %s\n", nimPart);
+	// printf("nimPart: %s\n", nimPart);
 	
 	// Mengisi matriks biner
 	for(i=0; i<17+1;++i){
 		AFull[i] = -1;
 	}
 	
-	decToBin(atoi(nimPart), AFull);
+	// Mendapatkan binary dari NIM
+	decToBin(atoi(nimPart), AFull, 17);
 	
 	// debugging
+	/*
 	for(i=0; i<17;++i){
 		printf("%d", AFull[i]);
 	}
 	printf("\n");
+	*/
 	
+	// Mengambil last significant byte dari NIM
 	for(i=0; i<8; ++i){
 		A += AFull[i+9] * pow(10, 7-i);
 	}
 	
 	// debugging
-	printf("%d", A);
+	//printf("%d", A);
 	
-	/*
-	AFull = itoa(A);
+	// Operasi 1: (A & y) ^ x 
+	// x = 1010 0101 = 165
+	// y = 1110 1111 = 239
+	decToBin(((binToDec(A) & 239) ^ 165), hasil, 8);
 	
-	for(i=
-		strncat(APart, &AFull[i], 1);
-	
-	printf("A sting: %s\n", A);
-	printf("A int: %d\n", atoi(A));
-	printf("A&y: %d\n", decToBin((atoi(A) & 165)));	
-	printf("hasil: %d\n", decToBin((atoi(A) & 165)^239));
-	*/
-	
-	//printf("A: %lld", A);
+	// Mencetak Hasil Binary
+	printf("1: ");
+	for(i=0; i<8;++i){
+		printf("%d", hasil[i]);
+	}
+	printf("\n");
 	
     return 0;
 }
