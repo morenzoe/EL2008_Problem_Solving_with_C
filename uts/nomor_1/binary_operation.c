@@ -2,7 +2,7 @@
 *Hari dan Tanggal : Kamis, 17 Maret 2022
 *Nama (NIM)       : Eraraya Morenzo Muten (18320003)
 *Nama File        : binary_operation.c
-*Deskripsi        : Program NIM kemudian melakukan
+*Deskripsi        : Program menerima NIM kemudian melakukan
 *					berbagai operasi terhadap bilangan
 *					biner dari NIM.
 */
@@ -86,7 +86,7 @@ int binToSigned(int* bin){
 }
 
 void printHasil(int* hasil, int i){
-	printf("%d: \n", i);
+	printf("Operasi %d: \n", i);
 	printf("Binary: ");
 	for(i=0; i<8; ++i){
 		printf("%d", hasil[i]);
