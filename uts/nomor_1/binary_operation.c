@@ -145,7 +145,7 @@ int main()
 	// Operasi 2: (~(y >> 4) && x) + A 
 	// x = 1101 1011 = 219
 	// y = 1111 0011 = 243
-	decToBin((1+binToDec(A)), hasil, 8);
+	decToBin((((~(243 >> 4)) && 219) + binToDec(A)), hasil, 8);
 	
 	// Mencetak Hasil Binary
 	printHasil(hasil, 2);
