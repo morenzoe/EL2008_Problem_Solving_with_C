@@ -1,5 +1,5 @@
 /*EL2008 Pemecahan Masalah dengan C 2021/2022
-*Hari dan Tanggal : Kamis, 17 Maret 2022
+*Hari dan Tanggal : Minggu, 20 Maret 2022
 *Nama (NIM)       : Eraraya Morenzo Muten (18320003)
 *Nama File        : binary_operation.c
 *Deskripsi        : Program menerima NIM kemudian melakukan

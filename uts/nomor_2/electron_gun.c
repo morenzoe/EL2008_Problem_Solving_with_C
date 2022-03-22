@@ -1,7 +1,7 @@
 /*EL2008 Pemecahan Masalah dengan C 2021/2022
-*Hari dan Tanggal : Kamis, 17 Maret 2022
+*Hari dan Tanggal : Minggu, 20 Maret 2022
 *Nama (NIM)       : Eraraya Morenzo Muten (18320003)
-*Nama File        : binary_operation.c
+*Nama File        : electron_gun.c
 *Deskripsi        : Program menerima data tegangan dalam juta
 *					dan menghitung massa relativistik serta
 *					kecepatan elektron dengan suatu rumus.
@@ -23,7 +23,7 @@ int main(){
 	const float c = 2.9979;
 	
 	// Membaca data dari file
-	FILE *file = fopen("data.txt", "r");
+	FILE *file = fopen("tegangan.txt", "r");
 	char row[maxLen];
 	char* token;
 	
@@ -34,14 +34,15 @@ int main(){
 		++i;
 	}
 	
+	fclose(file);
+	
 	// Melakukan perhitungan
 	// V*e = m*c^2 - m_o*c^2
 	// m = (v*e)/c^2 + m_o
 	for(j=0; j<i; ++j){
-		mass[j] = ((volt[j] * e)/pow(c,2)) * pow(10,-2) + m_o;
-		speed[j] = c * sqrt(1-pow(mass[j]/m_o,-2));
-		//printf("Tegangan: %f*10^6 V\tMassa: %f*10^-31 kg\tKecepatan: %f*10^8 m/s\n", volt[j], mass[j], speed[j]);
-		printf("%f\n", (speed[j]/c));
+		mass[j] = ((volt[j] * e)/pow(c,2)) * 10 + (m_o * 0.1);
+		speed[j] = c * sqrt(1-pow((mass[j] * 10)/m_o,-2));
+		printf("Untuk tegangan: %.1fx10^6V, didapatkan m =%.2fx10^-30 kg and v =%.1fX10^8 m/s\n", volt[j], mass[j], speed[j]);
 	}
 	
 	return 0;
