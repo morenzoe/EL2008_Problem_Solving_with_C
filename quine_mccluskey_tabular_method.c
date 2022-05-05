@@ -69,8 +69,7 @@ int main()
     
     i=min-1; // for looping
     
-    root=(struct node*)malloc(sizeof(struct node));
-    temp=(struct node*)malloc(sizeof(struct node));
+    root=temp=(struct node*)malloc(sizeof(struct node));
     
     printf("\nEnter the minterms one by one\n\n");
     scanf("%d",&temp->data[0]);                     //first minterm is stored
