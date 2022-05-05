@@ -3,53 +3,90 @@
 
 struct node
 {
-    int data[257],bin[26],noofones,isimplicant,minarr[1000];
+    int data[257];      // minterm in decimal
+    int bin[26];        // minterm in binary
+    int noofones;       // sum of bin
+    int isimplicant;    // 1 or 0
+    int minarr[1000];
+    
     char term[26];
+    
     struct node* right;
 };
 
-struct node *root,*head,*improot,*save,*fin;
-int var,min,number=1,columns=2,check=1,limit,imptable[100][100],counter=0,essential[1000],t=0,no=0,minterms[1000];
-char a[26],b[26];       //variable names are stored as alphabets, can be modified to work for more variables
+struct node *root;      // head of minterm linked list
+struct node *head;      // 
+struct node *improot;
+struct node *save;
+struct node *fin;
 
-void group1();          //the minterms are grouped according to the number of ones
-void arrange();         //the minterms are arranged according t their magnitude
-void swap(struct node*,struct node*);           //data of two nodes is swapped
-void disp();            //various column with pairings are displayed
-void further_groupings();           //the minterms are paired
+int var;                // number of variables
+int min;                // number of minterms
+int number=1;
+int columns=2;
+int check=1;
+int limit;              // biggest num of ones
+int imptable[100][100]; //
+int counter=0;
+int essential[1000];
+int t=0;
+int no=0;
+int minterms[1000];     // array of minterms
+
+char a[26];
+char b[26];       //variable names are stored as alphabets, can be modified to work for more variables
+
+void group1();                          //the minterms are grouped according to the number of ones
+void arrange();                         //the minterms are arranged according t their magnitude
+void swap(struct node*,struct node*);   //data of two nodes is swapped
+void disp();                            //various column with pairings are displayed
+void further_groupings();               //the minterms are paired
 void end_loop(struct node*);            //the extra node in a list is deleted
 void display_implicants();              //the implicants are displayed
 void implicants(struct node*);          //initializes each term as an implicant
-void collect();                 //converts the term from binary notation to variables
-void variables();       //the variables for the function are stored
-void convert();             //reduces the prime implicants which occur more than once to one
-void implicants_table();        //the prime implicants table is formed and essential implicants are found
-void func();                //the minimized function is displayed
-void other_implicants();        //the prime implicants other than the essential ones are collected
-void final_terms();     //the final terms in the minimized function are noted
-void store_minterms();      //minterms are stored in an array
+void collect();                         //converts the term from binary notation to variables
+void variables();                       //the variables for the function are stored
+void convert();                         //reduces the prime implicants which occur more than once to one
+void implicants_table();                //the prime implicants table is formed and essential implicants are found
+void func();                            //the minimized function is displayed
+void other_implicants();                //the prime implicants other than the essential ones are collected
+void final_terms();                     //the final terms in the minimized function are noted
+void store_minterms();                  //minterms are stored in an array
 
 int main()
 {
-    int i,j,k,x;
+    int i;  // storing minterm loop variable
+    int j;  // minterm in dec, will be converted to bin
+    int k;  // bin indexing
+    int x;  // dec to bin loop variable
+    
     struct node* temp;
+    
     printf("\nEnter the number of variables : ");       //no. of variables and minterms are recorded
     scanf("%d",&var);
     printf("\nEnter the number of minterms : ");
     scanf("%d",&min);
-    i=min-1;
-    root=temp=(struct node*)malloc(sizeof(struct node));
+    
+    i=min-1; // for looping
+    
+    root=(struct node*)malloc(sizeof(struct node));
+    temp=(struct node*)malloc(sizeof(struct node));
+    
     printf("\nEnter the minterms one by one\n\n");
     scanf("%d",&temp->data[0]);                     //first minterm is stored
-    j=temp->data[0];
-    temp->noofones=0;
-    x=var;
-    k=0;
-    while(x--)      //converts minterm to binary notation
+    
+    j=temp->data[0];    // minterm in dec, will be converted to bin
+    temp->noofones=0;   // init
+    x=var;              // bin digits = num of var, see truth table
+    k=0;                // init
+    
+    // converts minterm to binary notation
+    while(x--)      
     {
+        // dec to bin, division method
         if(j%2==1)
         {
-            temp->bin[k]=1;
+            temp->bin[k]=1;  
             temp->noofones++;
         }
         else
@@ -59,9 +96,14 @@ int main()
         j=j/2;
         k++;
     }
-    while(i--)      //rest of the minterms are stored
+    
+    // rest of the minterms are stored
+    while(i--)      
     {
+        // jadi ribet karena ga pake fungsi linked list (push, dkk)
         temp=temp->right=(struct node*)malloc(sizeof(struct node));
+        
+        // same procedure as first minterm
         scanf("%d",&temp->data[0]);
         j=temp->data[0];
         temp->noofones=0;
@@ -82,10 +124,22 @@ int main()
             k++;
         }
     }
+    
+    // end of linked list
     temp->right=NULL;
-    arrange();      //various functions are called according to their needs
+    
+    //various functions are called according to their needs
+    
+    // sort linked list by minterm valu
+    arrange();      
+    
+    // traverse linked list, store minterm in array
     store_minterms();
+    
+    // sort linked list by num of ones
     group1();
+    
+    
     disp();
     end_loop(root);
     head=(struct node*)malloc(sizeof(struct node));
@@ -108,7 +162,8 @@ int main()
     return 0;
 }
 
-void arrange()          //arranging the minterms in increasing order of magnitude
+//arranging the minterms in increasing order of magnitude
+void arrange()          
 {
     struct node *temp1,*temp2;
     temp1=temp2=root;
@@ -117,7 +172,8 @@ void arrange()          //arranging the minterms in increasing order of magnitud
         temp2=root;
         while(temp2!=NULL)
         {
-            if(temp1->data[0]<temp2->data[0])       //if not in order their values are exchanged with swap function
+            //if not in order their values are exchanged with swap function
+            if(temp1->data[0]<temp2->data[0])       
             {
                 swap(temp1,temp2);
             }
@@ -125,13 +181,15 @@ void arrange()          //arranging the minterms in increasing order of magnitud
         }
         if(temp1->right==NULL)
         {
-            limit=temp1->data[0];           //the magnitude of the last minterm is recorded later for prime implicants table
+            //the magnitude of the last minterm is recorded later for prime implicants table
+            limit=temp1->data[0];           
         }
         temp1=temp1->right;
     }
 }
 
-void store_minterms()       //array to store all the minterms
+//array to store all the minterms
+void store_minterms()       
 {
     int i=0;
     struct node* temp;
@@ -144,7 +202,8 @@ void store_minterms()       //array to store all the minterms
     }
 }
 
-void swap(struct node* temp1,struct node* temp2)        //swapping all the data of two nodes
+//swapping all the data of two nodes
+void swap(struct node* temp1,struct node* temp2)        
 {
     int x,y,i=0;
     i=var;
@@ -162,9 +221,10 @@ void swap(struct node* temp1,struct node* temp2)        //swapping all the data 
     temp2->data[0]=x;
 }
 
-void group1()       //where the minterms are arranged according to the number of ones
+//where the minterms are arranged according to the number of ones
+void group1()       
 {
-    int i,count=0,j,k=0;
+    int i,j,k=0;
     struct node *temp,*next;
     temp=save=root;
     root=next=(struct node*)malloc(sizeof(struct node));
@@ -173,8 +233,10 @@ void group1()       //where the minterms are arranged according to the number of
         temp=save;
         while(temp!=NULL)
         {
-            if(temp->noofones==i)       //minterms are arranged according to no. of ones , first 0 ones then 1 ones... and so on
+            //minterms are arranged according to no. of ones , first 0 ones then 1 ones... and so on
+            if(temp->noofones==i)       
             {
+                // fill node next with node temp values
                 next->data[0]=temp->data[0];
                 k++;
                 for(j=0;j<var;j++)
